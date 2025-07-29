@@ -70,6 +70,10 @@ class PersonVIew: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func set(name: String, email: String){
+        nameLbl.text = name
+        emailLbl.text = email
+    }
 }
 
 private extension PersonVIew {

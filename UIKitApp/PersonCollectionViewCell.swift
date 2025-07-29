@@ -11,6 +11,15 @@ class PersonCollectionViewCell: UICollectionViewCell {
     
     private var vw: PersonVIew?
     
+    var item: PersonResponse? {
+        didSet {
+            guard let firstName = item?.firstName,
+                    let lastName = item?.lastName,
+                    let email = item?.email  else { return }
+            vw?.set(name: "\(firstName) \(lastName)", email: email)
+        }
+        
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
