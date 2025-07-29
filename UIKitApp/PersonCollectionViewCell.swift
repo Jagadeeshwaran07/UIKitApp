@@ -7,9 +7,15 @@
 
 import UIKit
  
+protocol PersonCollectionViewCellDelegate: AnyObject {
+    func didTapSubscribed()
+}
+
 class PersonCollectionViewCell: UICollectionViewCell {
     
     private var vw: PersonVIew?
+    
+    weak var delegate: PersonCollectionViewCellDelegate?
     
     var item: PersonResponse? {
         didSet {
@@ -36,7 +42,8 @@ private extension PersonCollectionViewCell {
         
         guard vw == nil else { return }
         
-        vw = PersonVIew {
+        vw = PersonVIew { [weak self] in
+            self?.delegate?.didTapSubscribed()
         }
         
         self.contentView.addSubview(vw!)
