@@ -8,20 +8,19 @@
 import UIKit
 
 class PeopleViewController: UIViewController {
-
-  
+    
     private lazy var personVw: PersonVIew  = {
-        
-        var vw = PersonVIew()
+        var vw = PersonVIew { [weak self] in
+            self?.subscribed()
+        }
         return vw
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Hiiiii")
+        print("Welcome to my UIKit App")
         setup()
     }
-
 }
 
 private extension PeopleViewController {
@@ -34,7 +33,11 @@ private extension PeopleViewController {
             personVw.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
             personVw.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8)
         ])
-         
+        
+    }
+    
+    func subscribed() {
+        print("Subscribed")
     }
 }
 

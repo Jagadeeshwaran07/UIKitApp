@@ -58,8 +58,11 @@ class PersonVIew: UIView {
         return lbl
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    private var action: () -> ()
+    
+    init(action: @escaping () -> ()) {
+        self.action = action
+        super.init(frame: .zero)
         setup()
     }
     
@@ -91,10 +94,10 @@ private extension PersonVIew {
         ])
          
     
-    }
+    }  
     
     @objc func didTapSubscribe(sender: UIButton) {
-        print("Subscribed")
+        action()
     }
 
 }
