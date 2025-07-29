@@ -1,0 +1,46 @@
+//
+//  PersonCollectionViewCell.swift
+//  UIKitApp
+//
+//  Created by Jagadeeshwaran M on 29/07/25.
+//
+
+import UIKit
+ 
+class PersonCollectionViewCell: UICollectionViewCell {
+    
+    private var vw: PersonVIew?
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+private extension PersonCollectionViewCell {
+    
+    func setup() {
+        
+        guard vw == nil else { return }
+        
+        vw = PersonVIew {
+        }
+        
+        self.contentView.addSubview(vw!)
+        
+        NSLayoutConstraint.activate([
+        
+            vw!.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+            vw!.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 8),
+            vw!.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -8),
+            vw!.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor)
+                 
+        ])
+        
+        
+    }
+}
